@@ -1,3 +1,16 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag 'chosen.min' %>
+<% end %>
+
+<% content_for :javascripts do %>
+  <%= javascript_include_tag 'chosen.jquery.min' %>
+  <script type="application/javascript">
+    jQuery(function() {
+      $('.chosen-select').chosen({search_contains: true});
+    });
+  </script>
+<% end %>
+
 <h2>Create Submission for <%= link_to @assessment.display_name, [@course, @assessment] %> </h2>
 
 <p>
