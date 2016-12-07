@@ -4,7 +4,20 @@
   <script type="application/javascript">
     /* Enable/disable extension days options */
     jQuery(function() {
+      $('.chosen-select').chosen({search_contains: true});
+
+
+      $dueDate = moment("<%= @assessment.due_at.to_s %>", "YYYY-MM-DD hh:mm:ss ZZ").startOf('day');
+
       $extensionDaysField = $('#extension_days');
+      $extensionNewDayField = $('#new_due_date_picker');
+
+      $extensionNewDayField.datetimepicker({
+        format: 'YYYY-MM-DD'
+      });
+      $extensionNewDayField.data('DateTimePicker').minDate($dueDate);
+
+      /* Enable/disable extension days options */
       $enableInfiniteExtension = $('#infinite_extension');
       if ($enableInfiniteExtension.is(':checked')) {
         $extensionDaysField.prop('disabled',true);
